@@ -1,7 +1,7 @@
-// What a time to be alive
+// quick joke skill 3/193407295863
+// "Alexa, tell me I'm pretty"
 'use strict'
 
-// AlexaSkill.js BEGIN
 function AlexaSkill(appId) {
     this._appId = appId;
 }
@@ -185,36 +185,54 @@ Response.prototype = (function () {
         }
     };
 })();
-// AlexaSkill.js END
 
 var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
 
-var Future = function() {
-    AlexaSkill.call(this, APP_ID)
+var MePretty = function() {
+  AlexaSkill.call(this, APP_ID)
 }
 
-Future.prototype = Object.create(AlexaSkill.prototype)
-Future.prototype.constructor = Future
+MePretty.prototype = Object.create(AlexaSkill.prototype)
+MePretty.prototype.constructor = MePretty
 
-Future.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
-    console.log("Future onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId)
-    var speechText = "What a time to be alive!"
-    response.tell(speechText)
+MePretty.prototype.eventHandlers.onSessionStarted = function(sessionStartedRequest, session) {
+  console.log("MePretty onSessionStarted requestId: " + sessionStartedRequest.requestId
+    + ", sessionId: " + session.sessionId)
 }
 
-Future.prototype.intentHandlers = {
-    "MetroIntent": function(intent, session, response) {
-        var speechText = "If young metro don't trust ya, I'm gon shoot ya"
-        response.tell(speechText)   
-    },
-    
+MePretty.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
+  console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId)
+  var speechOutput = "You're a filthy whore"
+  var repromptOutput = " "
+  var niceChance = Math.random() * 100
+  if(niceChance < 12) {
+      speechOutput = "Mirror mirror on the wall, you're the cutest of them all"
+  } else if (niceChance > 90) {
+      var fuck = 'fuck'
+      speechOutput = "You look like a " + fuck + "boy"
+  } else if (niceChance > 78) {
+      speechOutput = "Like Abraham Lincoln, I cannot tell a lie"
+  }
+  response.ask(speechOutput, repromptOutput)
+  
+}
+
+MePretty.prototype.intentHandlers = {
     "AMAZON.StopIntent": function(intent, session, response) {
         var speechOutput = "Sorry"
+        response.tell(speechOutput)
+    },
+    "STFUIntent": function(intent, session, response) {
+        var speechOutput = "Sorry daddy"
+        response.tell(speechOutput)
+    },
+    "ImpIntent": function(intent, session, response) {
+        var speechOutput = "Just Kidding"
         response.tell(speechOutput)
     }
 }
 
 exports.handler = function(event, context) {
-    var futureHelper = new Future()
-    futureHelper.execute(event, context)
+    var mePrettyHelper = new MePretty()
+    mePrettyHelper.execute(event, context)
 }

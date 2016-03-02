@@ -1,0 +1,10 @@
+{
+  "intents": [
+    {
+      "intent": "STFUIntent"
+    },
+    {
+      "intent": "ImpIntent"
+    }
+  ]
+}
