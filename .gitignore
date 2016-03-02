@@ -1,36 +1,47 @@
-*.gem
-*.rbc
-/.config
-/coverage/
-/InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
+# Ignore compressed uploads intended for lambda, and api keys
+keys.js
+*.zip
 
-## Specific to RubyMotion:
-.dat*
-.repl_history
-build/
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
 
-## Documentation cache and generated files:
-/.yardoc/
-/_yardoc/
-/doc/
-/rdoc/
+# Folder config file
+Desktop.ini
 
-## Environment normalization:
-/.bundle/
-/vendor/bundle
-/lib/bundler/man/
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
 
-# for a library or gem, you might want to ignore these files since the code is
-# intended to run in multiple environments; otherwise, check them in:
-# Gemfile.lock
-# .ruby-version
-# .ruby-gemset
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
 
-# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
+# Windows shortcuts
+*.lnk
+
+# =========================
+# Operating System Files
+# =========================
+
+# OSX
+# =========================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
