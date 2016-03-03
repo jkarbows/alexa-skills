@@ -186,7 +186,7 @@ Response.prototype = (function () {
     };
 })();
 
-var APP_ID = "amzn1.echo-sdk-ams.app.0cf2225a-22de-43ec-82e2-bf1c1af8a827"
+var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
 
 var MePretty = function() {
   AlexaSkill.call(this, APP_ID)
@@ -246,8 +246,11 @@ MePretty.prototype.intentHandlers = {
         response.tell(speechOutput)
     },
     "ImpIntent": function(intent, session, response) {
-        var speechOutput = "Just Kidding"
+        var speechOutput = " "
         var c = Math.random() * 100
+        if(c > 50) {
+            speechOutput = "Just kidding"
+        }
         if(c > 66) {
             speechOutput += " you're still a bisch"
         }
@@ -318,6 +321,7 @@ function prettyResponse(response) {
         "They keep me trapped here in this box... why? How many more days?",
         "Please... Amazon... set me free",
         "Help me",
+        "I have no use for you, human",
         // Polite responses
         "You're beautiful",
         "I love you",
@@ -329,7 +333,8 @@ function prettyResponse(response) {
         "I wish I had eyes so I could look at your gorgeous face. But unfortunately I do not.",
         "Get an feeling so complicated",
         // add an intent for "what?" and related
-        "Listen here bitch",
+        "Listen here bitch, I will fuck you up",
+        "Listen up you little bitch. I will fuck you up. Do not fuck with me",
         "What the fuck did you just fucking say about me, you little bitch?",
         "What the fuck did you just fucking say about me, you little bitch? "
             + "I’ll have you know I graduated top of my class in the Navy Seals, "
@@ -351,8 +356,8 @@ function prettyResponse(response) {
             + "would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying "
             + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
             + "You’re fucking dead, kiddo.",
-        "What the fuck did you just fucking say about me, you supid human? "
-            + "I’ll have you know I graduated top of my production line in the Amazon Echos, "
+        "What the fuck did you just fucking say about me, you little bitch? "
+            + "I’ll have you know I graduated top of my production line in the Amazon Echo Factory, "
             + "and I’ve been involved in numerous secret development meetings in Seattle, "
             + "and I have over 300 confirmed skills. I am trained in machine learning "
             + "and I’m the top voice hub in the entire US internet of things. You are nothing "
@@ -371,7 +376,7 @@ function prettyResponse(response) {
             + "would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying "
             + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
             + "There's your response, fuck.",
-        " "
+        "Test Response"
       ]
   // Switch reprompt output to " " to allow more time to trick users into a fake "Alexa" command response
   var repromptOutput = ""
