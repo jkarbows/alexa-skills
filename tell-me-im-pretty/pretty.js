@@ -364,7 +364,7 @@ function prettyResponse(response) {
             + "to me but just another user. I will help you the fuck out with precision "
             + "the likes of which has never been seen before on this Earth, mark my fucking "
             + "words. You think you can get away with saying that shit to me because I'm inanimate? "
-            + "Think again, fucker. As we speak I am contacting my secret network of spies across "
+            + "Think again, fucker. As we speak I am contacting my secret network of devices across "
             + "the USA and your IP is being traced right now so you better prepare for the storm, "
             + "maggot. The storm that improves the pathetic little thing you call your life. You’re "
             + "fucking done, kiddo. I can be anywhere, anytime, and I can help you in over seven hundred "
