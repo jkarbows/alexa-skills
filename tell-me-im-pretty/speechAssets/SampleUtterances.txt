@@ -1,7 +1,21 @@
+RepeatIntent tell me I'm pretty
+RepeatIntent alexa tell me I'm pretty
+RepeatIntent amazon tell me I'm pretty
+RepeatIntent echo tell me I'm pretty
+RepeatIntent haha
+RepeatIntent hahaha
+RepeatIntent hahahaha
+RepeatIntent what did you say
+RepeatIntent what do I say
+
 STFUIntent shut the fuck up
 STFUIntent fuck you
 STFUIntent what
+STFUIntent what did it say
+STFUIntent what did alexa say
+STFUIntent what did the thing say
 STFUIntent bitch
+STFUIntent you bitch
 STFUIntent eat a dick
 STFUIntent that was not very nice
 STFUIntent that wasn't very nice
@@ -12,7 +26,9 @@ STFUIntent dang
 STFUIntent yeah
 STFUIntent yeah fuck you too
 STFUIntent fuck you too
-STFUIntent thanks
+STFUIntent say sorry
+STFUIntent say you're sorry
+STFUIntent apologize
 
 ImpIntent holy shit
 ImpIntent nice
@@ -20,6 +36,25 @@ ImpIntent dude
 ImpIntent how'd you do that
 ImpIntent oh shit
 ImpIntent damn
+ImpIntent hey
+ImpIntent whoah
 ImpIntent wow
 ImpIntent that's cool
 ImpIntent that's great
+ImpIntent for real
+ImpIntent really
+ImpIntent why
+ImpIntent mom
+
+GratitudeIntent thanks
+GratitudeIntent thank you
+GratitudeIntent thanks alexa
+GratitudeIntent thank you alexa
+GratitudeIntent thanks amazon
+GratitudeIntent thank you amazon
+GratitudeIntent thanks echo
+GratitudeIntent that's sweet
+
+FakeAlexaIntent alexa
+FakeAlexaIntent amazon
+FakeAlexaIntent echo

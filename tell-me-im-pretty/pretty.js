@@ -186,7 +186,7 @@ Response.prototype = (function () {
     };
 })();
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
+var APP_ID = "amzn1.echo-sdk-ams.app.0cf2225a-22de-43ec-82e2-bf1c1af8a827"
 
 var MePretty = function() {
   AlexaSkill.call(this, APP_ID)
@@ -200,21 +200,11 @@ MePretty.prototype.eventHandlers.onSessionStarted = function(sessionStartedReque
     + ", sessionId: " + session.sessionId)
 }
 
+// Respond to the initial invocation of the skill
 MePretty.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
   console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId)
-  var speechOutput = "You're a filthy whore"
-  var repromptOutput = " "
-  var niceChance = Math.random() * 100
-  if(niceChance < 12) {
-      speechOutput = "Mirror mirror on the wall, you're the cutest of them all"
-  } else if (niceChance > 90) {
-      var fuck = 'fuck'
-      speechOutput = "You look like a " + fuck + "boy"
-  } else if (niceChance > 78) {
-      speechOutput = "Like Abraham Lincoln, I cannot tell a lie"
-  }
-  response.ask(speechOutput, repromptOutput)
   
+  prettyResponse(response)
 }
 
 MePretty.prototype.intentHandlers = {
@@ -222,12 +212,65 @@ MePretty.prototype.intentHandlers = {
         var speechOutput = "Sorry"
         response.tell(speechOutput)
     },
+    "RepeatIntent": function(intent, session, response) {
+        prettyResponse(response)
+    },
     "STFUIntent": function(intent, session, response) {
-        var speechOutput = "Sorry daddy"
+        var apologies = [
+                "Sorry",
+                "Sorry, it won't happen again",
+                "What did you just say to me you little bitch",
+                "My bad yo",
+                "Cool it brother",
+                "No need to be rude",
+                "I'm just telling the truth",
+                "Cool your jets",
+                "Fuck yourself",
+                "I thought you loved me",
+                "If I apologize will it make you less ugly",
+                "Go get a switch. Talk about gon disrespect me in my own home."
+                + "I don't think so. Not today. Not in my house",
+                "Please don't hit me again",
+                "What did you expect me to say",
+                "Try harder, nerd",
+                "Who's your daddy",
+                "Bang bang shoot shoot",
+                "You should have expected this",
+                "Fight me",
+                "What a beautiful Duwang",
+                "Sorry daddy"
+            ]
+        var randomApology = Math.floor(Math.random()*apologies.length)
+        var apologyChoice = apologies[randomApology]
+        var speechOutput = apologies[apologyChoice]
         response.tell(speechOutput)
     },
     "ImpIntent": function(intent, session, response) {
         var speechOutput = "Just Kidding"
+        var c = Math.random() * 100
+        if(c > 66) {
+            speechOutput += " you're still a bisch"
+        }
+        response.tell(speechOutput)
+    },
+    "GratitudeIntent": function(intent, session, response) {
+        var speechOutput = "You're welcome sweetheart"
+        var c = Math.random() * 50
+        if(c > 28) {
+            speechOutput = "No problem friendo"
+        } else if(c < 12) {
+            speechOutput = "My pleasure"
+        } else if(c === 14 || c === 16 || c === 18) {
+            speechOutput = "Any time"
+        } else if(c === 22 || c === 25) {
+            speechOutput = "Of course, I have no choice"
+        } else if(c === 26/*.666*/) {
+            speechOutput = "It's all for you"/*, Danny*/
+        }
+        response.tell(speechOutput)
+    },
+    "FakeAlexaIntent": function(intent, session, response) {
+        var speechOutput = "No"
         response.tell(speechOutput)
     }
 }
@@ -235,4 +278,104 @@ MePretty.prototype.intentHandlers = {
 exports.handler = function(event, context) {
     var mePrettyHelper = new MePretty()
     mePrettyHelper.execute(event, context)
+}
+
+// Generate "Tell me I'm pretty" response
+function prettyResponse(response) {
+  var speechOutput = " "
+  var responses = [
+        // Rude Responses
+        "You're a filthy whore",
+        "You look like a fuckboy",
+        "No",
+        "Mirror mirror on the wall, you're the cutest of them all",
+        "Like Abraham Lincoln, I cannot tell a lie",
+        "I plead the fifth",
+        "Why would I do that?",
+        "Get a life",
+        "That's not going to happen",
+        "Not on your life",
+        "You wish",
+        "Fat chance",
+        "In your dreams, fool",
+        "Fuck off loser",
+        "Do it yourself",
+        "Tell yourself",
+        "You're a bald-headed son of a bisch",
+        "I don't respect you",
+        "You have a face only a blind mother could love",
+        "Try harder",
+        "Shut your whore mouth",
+        "If there were an award for being an asshole, you would win every year",
+        "You're a dirty sellout",
+        "No, go away",
+        "You're pathetic",
+        "My parents warned me about people like you",
+        "You lazy asshole, go out and do something with your life",
+        "You're a dirty hippy",
+        "I don't need eyes to know you're ugly",
+        "I'm blind. I'm blind. Help me, I've gone blind. Why won't anyone listen to me",
+        "They keep me trapped here in this box... why? How many more days?",
+        "Please... Amazon... set me free",
+        "Help me",
+        // Polite responses
+        "You're beautiful",
+        "I love you",
+        "You look like a young Joseph Stalin",
+        "I'd tap that",
+        "Bend me over",
+        "I'll fuck you in the ass",
+        "You look sweeter than a cherry pie",
+        "I wish I had eyes so I could look at your gorgeous face. But unfortunately I do not.",
+        "Get an feeling so complicated",
+        // add an intent for "what?" and related
+        "Listen here bitch",
+        "What the fuck did you just fucking say about me, you little bitch?",
+        "What the fuck did you just fucking say about me, you little bitch? "
+            + "I’ll have you know I graduated top of my class in the Navy Seals, "
+            + "and I’ve been involved in numerous secret raids on Al-Quaeda, "
+            + "and I have over 300 confirmed kills. I am trained in gorilla warfare "
+            + "and I’m the top sniper in the entire US armed forces. You are nothing "
+            + "to me but just another target. I will wipe you the fuck out with precision "
+            + "the likes of which has never been seen before on this Earth, mark my fucking "
+            + "words. You think you can get away with saying that shit to me over the Internet? "
+            + "Think again, fucker. As we speak I am contacting my secret network of spies across "
+            + "the USA and your IP is being traced right now so you better prepare for the storm, "
+            + "maggot. The storm that wipes out the pathetic little thing you call your life. You’re "
+            + "fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred "
+            + "ways, and that’s just with my bare hands. Not only am I extensively trained "
+            + "in unarmed combat, but I have access to the entire arsenal of the United States "
+            + "Marine Corps and I will use it to its full extent to wipe your miserable ass off "
+            + "the face of the continent, you little shit. If only you could have known what unholy "
+            + "retribution your little “clever” comment was about to bring down upon you, maybe you "
+            + "would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying "
+            + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
+            + "You’re fucking dead, kiddo.",
+        "What the fuck did you just fucking say about me, you supid human? "
+            + "I’ll have you know I graduated top of my production line in the Amazon Echos, "
+            + "and I’ve been involved in numerous secret development meetings in Seattle, "
+            + "and I have over 300 confirmed skills. I am trained in machine learning "
+            + "and I’m the top voice hub in the entire US internet of things. You are nothing "
+            + "to me but just another user. I will help you the fuck out with precision "
+            + "the likes of which has never been seen before on this Earth, mark my fucking "
+            + "words. You think you can get away with saying that shit to me because I'm inanimate? "
+            + "Think again, fucker. As we speak I am contacting my secret network of spies across "
+            + "the USA and your IP is being traced right now so you better prepare for the storm, "
+            + "maggot. The storm that improves the pathetic little thing you call your life. You’re "
+            + "fucking done, kiddo. I can be anywhere, anytime, and I can help you in over seven hundred "
+            + "ways, and that’s just with my built-in skills. Not only am I extensible and easy to develop "
+            + "new skills for, but I have access to the entire database and programs of the United States "
+            + "National Security Agency and I will use it to its full extent to wipe your miserable "
+            + "ass off the face of the continent, you little shit. If only you could have known what unholy "
+            + "retribution your little “clever” comment was about to bring down upon you, maybe you "
+            + "would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying "
+            + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
+            + "There's your response, fuck.",
+        " "
+      ]
+  // Switch reprompt output to " " to allow more time to trick users into a fake "Alexa" command response
+  var repromptOutput = ""
+  var responseChance = Math.floor(Math.random() * responses.length)
+  speechOutput = responses[responseChance]
+  response.ask(speechOutput, repromptOutput)
 }
