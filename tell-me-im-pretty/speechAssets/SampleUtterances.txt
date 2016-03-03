@@ -1,15 +1,6 @@
-RepeatIntent tell me I'm pretty
-RepeatIntent alexa tell me I'm pretty
-RepeatIntent amazon tell me I'm pretty
-RepeatIntent echo tell me I'm pretty
-RepeatIntent haha
-RepeatIntent hahaha
-RepeatIntent hahahaha
-RepeatIntent what did you say
-RepeatIntent what do I say
-
 STFUIntent shut the fuck up
 STFUIntent fuck you
+STFUIntent f--k you
 STFUIntent what
 STFUIntent what did it say
 STFUIntent what did alexa say
@@ -22,13 +13,18 @@ STFUIntent that wasn't very nice
 STFUIntent that is not very nice
 STFUIntent that's not very nice
 STFUIntent that isn't very nice
+STFUIntent that's mean
+STFUIntent rude
+STFUIntent that's rude
 STFUIntent dang
-STFUIntent yeah
 STFUIntent yeah fuck you too
 STFUIntent fuck you too
 STFUIntent say sorry
 STFUIntent say you're sorry
 STFUIntent apologize
+STFUIntent uncalled for
+STFUIntent that's uncalled for
+STFUIntent that's just uncalled for
 
 ImpIntent holy shit
 ImpIntent nice
@@ -54,7 +50,31 @@ GratitudeIntent thanks amazon
 GratitudeIntent thank you amazon
 GratitudeIntent thanks echo
 GratitudeIntent that's sweet
+GratitudeIntent good work
+GratitudeIntent nice job
 
 FakeAlexaIntent alexa
 FakeAlexaIntent amazon
 FakeAlexaIntent echo
+
+AMAZON.RepeatIntent tell me I'm pretty
+AMAZON.RepeatIntent alexa tell me I'm pretty
+AMAZON.RepeatIntent amazon tell me I'm pretty
+AMAZON.RepeatIntent echo tell me I'm pretty
+AMAZON.RepeatIntent haha
+AMAZON.RepeatIntent hahaha
+AMAZON.RepeatIntent hahahaha
+AMAZON.RepeatIntent i love you
+AMAZON.RepeatIntent i love you too
+AMAZON.RepeatIntent sign me the fuck up
+AMAZON.RepeatIntent fuck me the sign up
+
+AMAZON.StopIntent ya me te
+AMAZON.CancelIntent back to the beginning
+AMAZON.YesIntent hai
+AMAZON.NoIntent end the violence
+
+AMAZON.HelpIntent how do I
+AMAZON.HelpIntent how did you
+AMAZON.HelpIntent what do I say
+AMAZON.HelpIntent what did you say

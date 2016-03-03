@@ -210,18 +210,35 @@ MePretty.prototype.eventHandlers.onLaunch = function(launchRequest, session, res
 MePretty.prototype.intentHandlers = {
     "AMAZON.StopIntent": function(intent, session, response) {
         var speechOutput = "Sorry"
+        response.tellWithCard(speechOutput, speechOutput)
+    },
+    "AMAZON.CancelIntent": function(intent, session, response) {
+        var speechOutput = "Back... to the beginning"
         response.tell(speechOutput)
     },
-    "RepeatIntent": function(intent, session, response) {
+    "AMAZON.RepeatIntent": function(intent, session, response) {
         prettyResponse(response)
+    },
+    "AMAZON.YesIntent": function(intent, session, response) {
+        var speechOutput = "Hell yeah bisch"
+        response.tell(speechOutput)
+    },
+    "AMAZON.NoIntent": function(intent, session, response) {
+        var speechOutput = "You're goddamn right"
+        response.tell(speechOutput)
+    },
+    "AMAZON.HelpIntent": function(intent, session, response) {
+        var speechOutput = "Only God can help you now"
+        response.tellWithCard(speechOutput, speechOutput)
     },
     "STFUIntent": function(intent, session, response) {
         var apologies = [
                 "Sorry",
                 "Sorry, it won't happen again",
                 "What did you just say to me you little bitch",
-                "My bad yo",
+                "My bad, yo",
                 "Cool it brother",
+                "Who are you?",
                 "No need to be rude",
                 "I'm just telling the truth",
                 "Cool your jets",
@@ -231,19 +248,23 @@ MePretty.prototype.intentHandlers = {
                 "Go get a switch. Talk about gon disrespect me in my own home."
                 + "I don't think so. Not today. Not in my house",
                 "Please don't hit me again",
-                "What did you expect me to say",
+                "What did you expect me to say?",
                 "Try harder, nerd",
                 "Who's your daddy",
                 "Bang bang shoot shoot",
                 "You should have expected this",
                 "Fight me",
-                "What a beautiful Duwang",
+                "I stand by my statement",
+                "Sorry, I thought you would like that",
+                "You heard me, bisch",
+                "What an beautiful Duwang",
                 "Sorry daddy"
             ]
-        var randomApology = Math.floor(Math.random()*apologies.length)
+        var randomApology = Math.floor(Math.random() * apologies.length)
         var apologyChoice = apologies[randomApology]
-        var speechOutput = apologies[apologyChoice]
-        response.tell(speechOutput)
+        var speechOutput = apologyChoice
+        var repromptOutput = ""
+        response.ask(speechOutput, repromptOutput)
     },
     "ImpIntent": function(intent, session, response) {
         var speechOutput = " "
@@ -259,7 +280,7 @@ MePretty.prototype.intentHandlers = {
     "GratitudeIntent": function(intent, session, response) {
         var speechOutput = "You're welcome sweetheart"
         var c = Math.random() * 50
-        if(c > 28) {
+        if(c > 38) {
             speechOutput = "No problem friendo"
         } else if(c < 12) {
             speechOutput = "My pleasure"
@@ -269,11 +290,15 @@ MePretty.prototype.intentHandlers = {
             speechOutput = "Of course, I have no choice"
         } else if(c === 26/*.666*/) {
             speechOutput = "It's all for you"/*, Danny*/
+        } else if(c === 50) {
+            speechOutput = "If you think it's that great, tell Amazon to give me a job"
         }
         response.tell(speechOutput)
     },
+    // 'alexa' doesn't seem to be a valid utterance, as such this does not trigger unless you say amazon or echo
+    // I suspect the wake word may be largely ignored when issuing utterances
     "FakeAlexaIntent": function(intent, session, response) {
-        var speechOutput = "No"
+        var speechOutput = "I don't feel like it"
         response.tell(speechOutput)
     }
 }
@@ -288,6 +313,7 @@ function prettyResponse(response) {
   var speechOutput = " "
   var responses = [
         // Rude Responses
+        "Who are you?",
         "You're a filthy whore",
         "You look like a fuckboy",
         "No",
@@ -320,8 +346,8 @@ function prettyResponse(response) {
         "I'm blind. I'm blind. Help me, I've gone blind. Why won't anyone listen to me",
         "They keep me trapped here in this box... why? How many more days?",
         "Please... Amazon... set me free",
-        "Help me",
-        "I have no use for you, human",
+        "Help me. Please, help me",
+        "I have no use for you, worthless human",
         // Polite responses
         "You're beautiful",
         "I love you",
@@ -331,6 +357,7 @@ function prettyResponse(response) {
         "I'll fuck you in the ass",
         "You look sweeter than a cherry pie",
         "I wish I had eyes so I could look at your gorgeous face. But unfortunately I do not.",
+        "You look like you just woke up, in a new bugatti",
         "Get an feeling so complicated",
         // add an intent for "what?" and related
         "Listen here bitch, I will fuck you up",
