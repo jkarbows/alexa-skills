@@ -14,17 +14,12 @@ STFUIntent that is not very nice
 STFUIntent that's not very nice
 STFUIntent that isn't very nice
 STFUIntent that's mean
-STFUIntent rude
-STFUIntent that's rude
 STFUIntent dang
 STFUIntent yeah fuck you too
 STFUIntent fuck you too
 STFUIntent say sorry
 STFUIntent say you're sorry
 STFUIntent apologize
-STFUIntent uncalled for
-STFUIntent that's uncalled for
-STFUIntent that's just uncalled for
 
 ImpIntent holy shit
 ImpIntent nice
@@ -32,7 +27,6 @@ ImpIntent dude
 ImpIntent how'd you do that
 ImpIntent oh shit
 ImpIntent damn
-ImpIntent hey
 ImpIntent whoah
 ImpIntent wow
 ImpIntent that's cool
@@ -41,6 +35,15 @@ ImpIntent for real
 ImpIntent really
 ImpIntent why
 ImpIntent mom
+
+RudeIntent rude
+RudeIntent hey
+RudeIntent that was rude
+RudeIntent that's rude
+RudeIntent uncalled for
+RudeIntent that's uncalled for
+RudeIntent that was uncalled for
+RudeIntent that was just uncalled for
 
 GratitudeIntent thanks
 GratitudeIntent thank you
@@ -52,6 +55,8 @@ GratitudeIntent thanks echo
 GratitudeIntent that's sweet
 GratitudeIntent good work
 GratitudeIntent nice job
+
+WhoAreYouIntent who are you
 
 FakeAlexaIntent alexa
 FakeAlexaIntent amazon
@@ -70,8 +75,13 @@ AMAZON.RepeatIntent sign me the fuck up
 AMAZON.RepeatIntent fuck me the sign up
 
 AMAZON.StopIntent ya me te
+AMAZON.StopIntent ya me row
+
 AMAZON.CancelIntent back to the beginning
+
 AMAZON.YesIntent hai
+AMAZON.YesIntent okay
+
 AMAZON.NoIntent end the violence
 
 AMAZON.HelpIntent how do I

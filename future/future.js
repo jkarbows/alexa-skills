@@ -187,7 +187,7 @@ Response.prototype = (function () {
 })();
 // AlexaSkill.js END
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
+var APP_ID = "amzn1.echo-sdk-ams.app.4c3f95b4-2c51-45ea-9c69-7117b47747a0"
 
 var Future = function() {
     AlexaSkill.call(this, APP_ID)
@@ -205,7 +205,8 @@ Future.prototype.eventHandlers.onLaunch = function(launchRequest, session, respo
 Future.prototype.intentHandlers = {
     "MetroIntent": function(intent, session, response) {
         var speechText = "If young metro don't trust ya, I'm gon shoot ya"
-        response.tell(speechText)   
+        var cardTitle = "Future says:"
+        response.tellWithCard(speechText, cardTitle, speechText)   
     },
     
     "AMAZON.StopIntent": function(intent, session, response) {

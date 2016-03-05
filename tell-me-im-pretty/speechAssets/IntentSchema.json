@@ -25,7 +25,13 @@
       "intent": "ImpIntent"
     },
     {
+      "intent": "RudeIntent"
+    },
+    {
       "intent": "GratitudeIntent"
+    },
+    {
+      "intent": "WhoAreYouIntent"
     },
     {
       "intent": "FakeAlexaIntent"

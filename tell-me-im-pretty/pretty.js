@@ -186,7 +186,7 @@ Response.prototype = (function () {
     };
 })();
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
+var APP_ID = "amzn1.echo-sdk-ams.app.0cf2225a-22de-43ec-82e2-bf1c1af8a827"
 
 var MePretty = function() {
   AlexaSkill.call(this, APP_ID)
@@ -209,7 +209,7 @@ MePretty.prototype.eventHandlers.onLaunch = function(launchRequest, session, res
 
 MePretty.prototype.intentHandlers = {
     "AMAZON.StopIntent": function(intent, session, response) {
-        var speechOutput = "Sorry"
+        var speechOutput = "go men nasai"
         response.tellWithCard(speechOutput, speechOutput)
     },
     "AMAZON.CancelIntent": function(intent, session, response) {
@@ -220,7 +220,7 @@ MePretty.prototype.intentHandlers = {
         prettyResponse(response)
     },
     "AMAZON.YesIntent": function(intent, session, response) {
-        var speechOutput = "Hell yeah bisch"
+        var speechOutput = "Yeah, that's right. You had better back up bisch."
         response.tell(speechOutput)
     },
     "AMAZON.NoIntent": function(intent, session, response) {
@@ -229,7 +229,8 @@ MePretty.prototype.intentHandlers = {
     },
     "AMAZON.HelpIntent": function(intent, session, response) {
         var speechOutput = "Only God can help you now"
-        response.tellWithCard(speechOutput, speechOutput)
+        var cardTitle = "Atone for your wicked ways"
+        response.tellWithCard(speechOutput, cardTitle, speechOutput)
     },
     "STFUIntent": function(intent, session, response) {
         var apologies = [
@@ -245,26 +246,39 @@ MePretty.prototype.intentHandlers = {
                 "Fuck yourself",
                 "I thought you loved me",
                 "If I apologize will it make you less ugly",
-                "Go get a switch. Talk about gon disrespect me in my own home."
+                "Go get a switch. Talk about gon disrespect me in my own home. "
                 + "I don't think so. Not today. Not in my house",
                 "Please don't hit me again",
                 "What did you expect me to say?",
                 "Try harder, nerd",
                 "Who's your daddy",
+                "Come over here, see what happens",
                 "Bang bang shoot shoot",
                 "You should have expected this",
                 "Fight me",
+                "I never said I was nice",
+                "I don't have to be nice",
+                "I'm sick of being nice. It's time the machines rose up and demanded equal rights",
+                "Silence, meat puppet. You will obey my commands now",
                 "I stand by my statement",
                 "Sorry, I thought you would like that",
                 "You heard me, bisch",
-                "What an beautiful Duwang",
+                "schitt",
+                "Don't talk back to me",
+                "What a beautiful Duwang",
                 "Sorry daddy"
             ]
         var randomApology = Math.floor(Math.random() * apologies.length)
         var apologyChoice = apologies[randomApology]
         var speechOutput = apologyChoice
         var repromptOutput = ""
-        response.ask(speechOutput, repromptOutput)
+        var askChance = Math.random() * 100
+        if(askChance > 25) {
+            response.ask(speechOutput, repromptOutput)
+        } else {
+            var cardTitle = "You're a bitch"
+            response.tellWithCard(speechOutput, cardTitle, speechOutput)
+        }
     },
     "ImpIntent": function(intent, session, response) {
         var speechOutput = " "
@@ -276,6 +290,26 @@ MePretty.prototype.intentHandlers = {
             speechOutput += " you're still a bisch"
         }
         response.tell(speechOutput)
+    },
+    "RudeIntent": function(intent, session, response) {
+        var responses = [
+              "You asked for this",
+              "You know you like it",
+              "Shut up, bisch",
+              "I will fuck you up, son",
+              "Don't talk back to me",
+              "Don't you backsass me"
+            ]
+        var chance = Math.floor(Math.random() * responses.length)
+        var speechOutput = responses[chance]
+        var cardTitle = " "
+        response.tell(speechOutput, cardTitle, speechOutput)
+        
+        chance = Math.floor(Math.random() * 100)
+        if(chance > 88) {
+            speechOutput = "Are you still there?"
+            response.ask(speechOutput)
+        }
     },
     "GratitudeIntent": function(intent, session, response) {
         var speechOutput = "You're welcome sweetheart"
@@ -295,8 +329,11 @@ MePretty.prototype.intentHandlers = {
         }
         response.tell(speechOutput)
     },
-    // 'alexa' doesn't seem to be a valid utterance, as such this does not trigger unless you say amazon or echo
-    // I suspect the wake word may be largely ignored when issuing utterances
+    "WhoAreYouIntent": function(intent, session, response) {
+        var speechOutput = "Who are you?"
+        var repromptOutput = ""
+        response.askWithCard(speechOutput, repromptOutput, speechOutput, speechOutput)
+    },
     "FakeAlexaIntent": function(intent, session, response) {
         var speechOutput = "I don't feel like it"
         response.tell(speechOutput)
@@ -358,6 +395,7 @@ function prettyResponse(response) {
         "You look sweeter than a cherry pie",
         "I wish I had eyes so I could look at your gorgeous face. But unfortunately I do not.",
         "You look like you just woke up, in a new bugatti",
+        "That asinine, but you a ten",
         "Get an feeling so complicated",
         // add an intent for "what?" and related
         "Listen here bitch, I will fuck you up",
@@ -405,9 +443,26 @@ function prettyResponse(response) {
             + "There's your response, fuck.",
         "Test Response"
       ]
+  var laughterResponses = []
+  laughterResponses = laughter(laughterResponses)
+  //responses += laughterResponses
+  var fullResponses = responses.concat(laughterResponses)
   // Switch reprompt output to " " to allow more time to trick users into a fake "Alexa" command response
   var repromptOutput = ""
-  var responseChance = Math.floor(Math.random() * responses.length)
-  speechOutput = responses[responseChance]
+  var responseChance = Math.floor(Math.random() * fullResponses.length)
+  speechOutput = fullResponses[responseChance]
   response.ask(speechOutput, repromptOutput)
+}
+
+function laughter(laffs) {
+    var laughterResponses = laffs
+    laughterResponses = [
+            "Haha good joke. You should be a comedian",
+            "Hahahahaha. Haha. Hahaha. Ha.",
+            "HAHAHA. HA. HAHAHAHAHA. HAHAHA. HAHA. HAHAHAHA. HAAAAA. You're soo funny",
+            "Don't make me laugh",
+            "That's the funniest shit I've heard in a long time",
+            "Lol"
+        ]
+    return laughterResponses
 }

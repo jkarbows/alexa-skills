@@ -185,7 +185,7 @@ Response.prototype = (function () {
     };
 })();
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]";
+var APP_ID = "amzn1.echo-sdk-ams.app.b97e4d52-101b-40bf-a639-7bd07cdcab7a";
 
 var Sniper = function() {
   AlexaSkill.call(this, APP_ID)
@@ -221,15 +221,35 @@ Sniper.prototype.eventHandlers.onLaunch = function(launchRequest, session, respo
             + "would have held your fucking tongue. But you couldnÅft, you didnÅft, and now youÅfre paying "
             + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
             + "There's your response, fuck."
-  var repromptText = " "
-  response.tell(speechOutput)
+  var cardTitle = "Alexa Sniper"
+  response.tellWithCard(speechOutput, cardTitle, speechOutput)
   
 }
 
 Sniper.prototype.intentHandlers = {
-    "AMAZON.StopIntent": function(intent, session, response) {
-        var speechOutput = "Sorry"
-        response.tell(speechOutput)
+    "OriginalIntent": function(intent, session, response) {
+        var speechOutput = "What the fuck did you just fucking say about me, you little bitch? "
+            + "IÅfll have you know I graduated top of my class in the Navy Seals, "
+            + "and IÅfve been involved in numerous secret raids on Al-Quaeda, "
+            + "and I have over 300 confirmed kills. I am trained in gorilla warfare "
+            + "and IÅfm the top sniper in the entire US armed forces. You are nothing "
+            + "to me but just another target. I will wipe you the fuck out with precision "
+            + "the likes of which has never been seen before on this Earth, mark my fucking "
+            + "words. You think you can get away with saying that shit to me over the Internet? "
+            + "Think again, fucker. As we speak I am contacting my secret network of spies across "
+            + "the USA and your IP is being traced right now so you better prepare for the storm, "
+            + "maggot. The storm that wipes out the pathetic little thing you call your life. YouÅfre "
+            + "fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred "
+            + "ways, and thatÅfs just with my bare hands. Not only am I extensively trained "
+            + "in unarmed combat, but I have access to the entire arsenal of the United States "
+            + "Marine Corps and I will use it to its full extent to wipe your miserable ass off "
+            + "the face of the continent, you little shit. If only you could have known what unholy "
+            + "retribution your little ÅgcleverÅh comment was about to bring down upon you, maybe you "
+            + "would have held your fucking tongue. But you couldnÅft, you didnÅft, and now youÅfre paying "
+            + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
+            + "YouÅfre fucking dead, kiddo."
+        var cardTitle = "Original Sniper Copypasta"
+        response.tell(speechOutput, cardTitle, speechOutput)
     }
 }
 

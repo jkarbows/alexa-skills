@@ -1,7 +1,4 @@
 // For Isaiah, with L.O.V.E. <3
-/*
- * This file can be edited inline as a working lambda function
- */
 'use strict'
 
 function AlexaSkill(appId) {
@@ -188,7 +185,7 @@ Response.prototype = (function () {
     };
 })();
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]";
+var APP_ID = "amzn1.echo-sdk-ams.app.514d8e9a-59b6-4a22-87c5-ce64b1862f95";
 
 var DeezNuts = function() {
   AlexaSkill.call(this, APP_ID)
@@ -204,7 +201,7 @@ DeezNuts.prototype.eventHandlers.onSessionStarted = function(sessionStartedReque
 
 DeezNuts.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
   console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId)
-  var speechOutput = "Ha, got eem"
+  var speechOutput = "Haa, got eeeeeeeeeeeeeeeeeeeeee"
   var repromptText = " "
   response.tell(speechOutput)
   
