@@ -1,6 +1,8 @@
 # Ignore compressed uploads intended for lambda, and api keys
 keys.js
 *.zip
+/google
+/twitter
 
 # Windows image file caches
 Thumbs.db
