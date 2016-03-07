@@ -1,3 +1,4 @@
+// Use this version of the file for inline editing as a lambda function
 // For Isaiah, with L.O.V.E. <3
 'use strict'
 
@@ -203,7 +204,8 @@ DeezNuts.prototype.eventHandlers.onLaunch = function(launchRequest, session, res
   console.log("HelloWorld onLaunch requestId: " + launchRequest.requestId + ", sessionId: " + session.sessionId)
   var speechOutput = "Haa, got eeeeeeeeeeeeeeeeeeeeee"
   var repromptText = " "
-  response.tell(speechOutput)
+  var cardTitle = "Deez nuts nigga"
+  response.tellWithCard(speechOutput, cardTitle, speechOutput)
   
 }
 

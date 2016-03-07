@@ -3,7 +3,7 @@
 
 var AlexaSkill = require('./AlexaSkill')
 
-var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]";
+var APP_ID = "amzn1.echo-sdk-ams.app.[YOUR_APP_ID]"
 
 var DeezNuts = function() {
   AlexaSkill.call(this, APP_ID)

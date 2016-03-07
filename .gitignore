@@ -1,7 +1,6 @@
 # Ignore compressed uploads intended for lambda, and api keys
-keys.js
+secrets.js
 *.zip
-/google
 /twitter
 
 # Windows image file caches
