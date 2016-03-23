@@ -1,7 +1,7 @@
 # Ignore compressed uploads intended for lambda, and api keys
 secrets.js
 *.zip
-/twitter
+*.idea
 
 # Windows image file caches
 Thumbs.db

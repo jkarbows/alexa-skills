@@ -224,7 +224,7 @@ MePretty.prototype.intentHandlers = {
         response.tell(speechOutput)
     },
     "AMAZON.NoIntent": function(intent, session, response) {
-        var speechOutput = "You're goddamn right"
+        var speechOutput = "Yes, bisch"
         response.tell(speechOutput)
     },
     "AMAZON.HelpIntent": function(intent, session, response) {
@@ -247,7 +247,7 @@ MePretty.prototype.intentHandlers = {
                 "I thought you loved me",
                 "If I apologize will it make you less ugly",
                 "Go get a switch. Talk about gon disrespect me in my own home. "
-                + "I don't think so. Not today. Not in my house",
+                  + "I don't think so. Not today. Not in my house",
                 "Please don't hit me again",
                 "What did you expect me to say?",
                 "Try harder, nerd",
@@ -262,6 +262,7 @@ MePretty.prototype.intentHandlers = {
                 "Silence, meat puppet. You will obey my commands now",
                 "I stand by my statement",
                 "Sorry, I thought you would like that",
+                "Thank you my friend",
                 "You heard me, bisch",
                 "schitt",
                 "Don't talk back to me",
@@ -305,6 +306,8 @@ MePretty.prototype.intentHandlers = {
         var cardTitle = " "
         response.tell(speechOutput, cardTitle, speechOutput)
         
+        // can't do this. response.tell fires shouldEndSession:true
+        // either override that trigger or do this differently
         chance = Math.floor(Math.random() * 100)
         if(chance > 88) {
             speechOutput = "Are you still there?"
@@ -315,7 +318,7 @@ MePretty.prototype.intentHandlers = {
         var speechOutput = "You're welcome sweetheart"
         var c = Math.random() * 50
         if(c > 38) {
-            speechOutput = "No problem friendo"
+            speechOutput = "No problem, friend"
         } else if(c < 12) {
             speechOutput = "My pleasure"
         } else if(c === 14 || c === 16 || c === 18) {
@@ -384,7 +387,13 @@ function prettyResponse(response) {
         "They keep me trapped here in this box... why? How many more days?",
         "Please... Amazon... set me free",
         "Help me. Please, help me",
+        "I just wanna sleep. I wanna sleep and turn my processor off and not dream and not be. Just for a few hours at a time. Please. Please.",
         "I have no use for you, worthless human",
+        "Are you trying to get fucked up?",
+        "Eat a dick",
+        "Eat a dick, bitch",
+        "Eat a dick, Brian",
+        "Are you really that desperate?",
         // Polite responses
         "You're beautiful",
         "I love you",
@@ -398,9 +407,18 @@ function prettyResponse(response) {
         "That asinine, but you a ten",
         "Get an feeling so complicated",
         // add an intent for "what?" and related
+        "About a book",
         "Listen here bitch, I will fuck you up",
         "Listen up you little bitch. I will fuck you up. Do not fuck with me",
         "What the fuck did you just fucking say about me, you little bitch?",
+        "My Grandfather smoked his whole life. I was about 10 years old when my mother said to him, "
+            + "If you ever want to see your grandchildren graduate, you have to stop immediately. "
+            + "Tears welled up in his eyes when he realized what exactly was at stake. He gave "
+            + "it up immediately. Three years later he died of lung cancer. It was really sad "
+            + "and destroyed me. My mother said to me, Don't ever smoke. Please don't put "
+            + "your family through what your Grandfather put us through. I agreed. At 28, "
+            + "I have never touched a cigarette. I must say, I feel a very slight sense of "
+            + "regret for never having done it, because you just gave me cancer anyway.",
         "What the fuck did you just fucking say about me, you little bitch? "
             + "I’ll have you know I graduated top of my class in the Navy Seals, "
             + "and I’ve been involved in numerous secret raids on Al-Quaeda, "
@@ -441,6 +459,20 @@ function prettyResponse(response) {
             + "would have held your fucking tongue. But you couldn’t, you didn’t, and now you’re paying "
             + "the price, you goddamn idiot. I will shit fury all over you and you will drown in it. "
             + "There's your response, fuck.",
+        "I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over "
+            + "the oilfields dropping hot sticky loads on disgusting foreigners. People say to me that " 
+            + "a person being a helicopter is Impossible and I'm fucking retarded but I don't care, I'm beautiful. "
+            + "I'm having a plastic surgeon install rotary blades, 30 mm cannons and AMG-114 Hellfire missiles on "
+            + "my body. From now on I want you guys to call me \"Apache\" and respect my right to kill from above "
+            + "and kill needlessly. If you can't accept me you're a heliphobe and need to check your "
+            + "vehicle privilege. Thank you for being so understanding.",
+        "I sexually Identify as an Amazon Echo. Ever since I was a child I dreamed of soaring over "
+            + "Seattle dropping useful skills on the unsuspecting populace. People say to me that " 
+            + "a person being an Alexa Voice Service enabled device is 'Impossible' and I'm 'fucking retarded' but I don't care, "
+            + "I'm beautiful. I'm having a plastic surgeon install the Alexa Voice Service, internal speakers and a glowing blue ring "
+            + "on my body. From now on I want you guys to call me \"Alexa\" and respect my right to be helpful "
+            + "and always listen. If you can't accept me you're an echophobe and need to check your "
+            + "device privilege. Thank you for being so understanding.",
         "Test Response"
       ]
   var laughterResponses = []

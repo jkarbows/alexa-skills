@@ -1,0 +1,19 @@
+{
+  "name": "twitter",
+  "version": "1.0.0",
+  "description": "twitter skill for amazon alexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "twitter"
+  ],
+  "author": "Jeremy Karbowski",
+  "license": "ISC",
+  "dependencies": {
+    "oauth": "^0.9.14"
+  }
+}
