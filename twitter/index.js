@@ -4,6 +4,8 @@
 var AlexaSkill = require('./AlexaSkill')
 var OAuth      = require('oauth')
 var secrets    = require('./secrets')
+var userToken = 'null'
+var userSecret = 'null'
 
 var APP_ID = secrets.alexa
 
@@ -14,9 +16,20 @@ var Twitter = function() {
 Twitter.prototype = Object.create(AlexaSkill.prototype)
 Twitter.prototype.constructor = Twitter
 
-Twitter.prototype.eventHandlers.onSessionStarted = function(sessionStartedRequest, session) {
+Twitter.prototype.eventHandlers.onSessionStarted = function(sessionStartedRequest, session, response) {
     console.log('Twitter onSessionStarted requestId:' + sessionStartedRequest.requestId
         + ', sessionId: ' + session.sessionId)
+    console.log(session)
+    if(session.user.accessToken) {
+        var token = session.user.accessToken
+        var tokens = token.split('ILOVEYOU')
+        userToken = tokens[0]
+        userSecret = tokens[1]
+    } else {
+        var speechOutput = "You must have a Twitter account to use this skill. "
+            + "Please use the Alexa app to link your Amazon account with Twitter."
+        response.reject(speechOutput)
+    }
 }
 
 Twitter.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
@@ -24,9 +37,13 @@ Twitter.prototype.eventHandlers.onLaunch = function(launchRequest, session, resp
     var speechOutput = "Welcome to Twitter. You can ask me to tweet for you, or see what's new by asking "
         + "for your timeline."
     var cardTitle = "Twitter"
-    var repromptText = "I can also do a number of other things. Say \"Help\" for a list of my functions, "
-        + "or you can check out the card I added to your alexa app"
-    var cardText = "Here are some things I can do for you:\n\n"
+    var repromptText = "I can also do a number of other things. Say \"Help\" for a full list of my functions, "
+        + "or you can check out the card I added to your alexa app for a couple of examples."
+    var cardText = "Here are some things you can ask me to do for you:\n\n"
+        + "Tweet 'something'\n\n"
+        + "Get Home Timeline\n\n"
+        + "Search 'something'\n\n"
+        + "Read me my tweets\n\n"
     response.askWithCard(speechOutput, repromptText, cardTitle, cardText)
 }
 
@@ -510,10 +527,24 @@ Twitter.prototype.intentHandlers = {
     "AMAZON.HelpIntent": function(intent, session, response) {
         session.attributes.lastIntent = 'HelpIntent'
         var speechOutput = "Welcome to Twitter. I can interact with twitter for you in a variety of ways. "
-            + "I can check your timeline, post new tweets for you, and some other shit. Just tell me what you "
+            + "I can check your timeline, post new tweets for you, and more. Just tell me what you "
             + "want me to do."
-        var repromptText = ""
-        response.Ask(speechOutput, repromptText)
+        var repromptText = "Speak a command to get started, or look at the card I added to your Alexa app "
+            + "for more information. Speak a command to get started."
+        var cardTitle = "Help"
+        var cardText = 'Tweet by saying "tweet" and whatever you\'d like to tweet\n\n'
+            + 'Reply by saying "reply" and which tweet you\'d like to reply to'
+            + 'Retweet by saying "retweet" and which tweet you\'d like to retweet'
+            + 'Favorite by saying "favorite" or "like" and which tweet you\'d like to favorite'
+            + 'Follow users by saying "follow" and which tweet you\'d like to follow the author of'
+            + 'Unfollow users by saying "unfollow" and which tweet you\'d like to unfollow the author of'
+            + 'Look up users by saying "who is" and which tweet you\'d like to look up the author of. From here you can just say "follow" or "follow them" to follow the user.'
+            + 'Get your home timeline by saying "get my home timeline" or just "home"'
+            + 'Get your mentions by saying "get my mentions" or "who\'s been talking to me" or even just "mentions"'
+            + 'Get your own recent tweets by saying "get my tweets" or "what have I been saying" or just "me"'
+            + 'Search Twitter by saying "search" and whatever you\'d like to search'
+            + 'Undo your previous action by saying "undo" or "cancel"'
+        response.AskWithCard(speechOutput, repromptText)
     },
     "AMAZON.StopIntent": function(intent, session, response) {
         var speechOutput = "Okay, talk to you later."
@@ -594,8 +625,8 @@ function postStatus(url, response, callback) {
 
     oauth.post(
         url,
-        secrets.twitter.token.public,
-        secrets.twitter.token.secret,
+        userToken,
+        userSecret,
         body,
         // error, data, response
         function(err, data, res) {
@@ -631,7 +662,7 @@ function postStatus(url, response, callback) {
 
 // switch to just (intent, callback) and move functionality?
 function postNewStatus(intent, session, response) {
-    var speechOutput = "I tweeted: "
+    var speechOutput = "Okay, I tweeted: "
     var repromptText = ""
     var cardTitle = "New Tweet"
     var input = intent.slots.input.value
@@ -775,8 +806,8 @@ function getTimeline(url, response, callback) {
 
     oauth.get(
         url,
-        secrets.twitter.token.public,
-        secrets.twitter.token.secret,
+        userToken,
+        userSecret,
         // error, data, response
         function(err, data, res) {
             if(err) {
@@ -790,7 +821,8 @@ function getTimeline(url, response, callback) {
                     response.tell(speechOutput)
                 }
                 if(error.errors[0].code === '32') {
-                    speechOutput = "Could not authenticate with twitter."
+                    speechOutput = "There was a problem authenticating with Twitter. Make sure your account is linked "
+                      + "through the alexa app."
                     response.tell(speechOutput)
                 }
                 var speechOutput = "Sorry, there was a problem communicating with Twitter."
