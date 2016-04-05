@@ -152,6 +152,7 @@ Response.prototype = (function () {
                 response: alexaResponse
         };
         if (options.session && options.session.attributes) {
+            options.session.attributes.lastOutput = options.output
             returnResult.sessionAttributes = options.session.attributes;
         }
         return returnResult;

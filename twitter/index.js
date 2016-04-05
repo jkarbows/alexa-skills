@@ -514,23 +514,23 @@ Twitter.prototype.intentHandlers = {
         response.ask(speechOutput, repromptText)
     },
     "AMAZON.RepeatIntent": function(intent, session, response) {
-        /*var speechOutput = ""
+        var speechOutput = ""
 
-        if(!session.attributes || !session.attributes.speechOutput) {
+        if(!session.attributes || !session.attributes.lastOutput) {
             speechOutput = "I'm sorry, there's nothing for me to repeat to you."
             response.tell(speechOutput)
         } else {
-            speechOutput = session.attributes.lastOutput
+            speechOutput = "Sure. " + session.attributes.lastOutput
             response.tell(speechOutput)
-        }*/
+        }
     },
     "AMAZON.HelpIntent": function(intent, session, response) {
         session.attributes.lastIntent = 'HelpIntent'
         var speechOutput = "Welcome to Twitter. I can interact with twitter for you in a variety of ways. "
-            + "I can check your timeline, post new tweets for you, and more. Just tell me what you "
-            + "want me to do."
+            + "I can check your timeline, post new tweets for you, search on Twitter, retweet statuses, "
+            + "and more. What can I help you with?"
         var repromptText = "Speak a command to get started, or look at the card I added to your Alexa app "
-            + "for more information. Speak a command to get started."
+            + "for more information. What would you like me to do for you on Twitter?"
         var cardTitle = "Help"
         var cardText = 'Tweet by saying "tweet" and whatever you\'d like to tweet\n\n'
             + 'Reply by saying "reply" and which tweet you\'d like to reply to'
@@ -544,15 +544,14 @@ Twitter.prototype.intentHandlers = {
             + 'Get your own recent tweets by saying "get my tweets" or "what have I been saying" or just "me"'
             + 'Search Twitter by saying "search" and whatever you\'d like to search'
             + 'Undo your previous action by saying "undo" or "cancel"'
-        response.AskWithCard(speechOutput, repromptText)
+        response.askWithCard(speechOutput, repromptText)
     },
     "AMAZON.StopIntent": function(intent, session, response) {
         var speechOutput = "Okay, talk to you later."
         response.tell(speechOutput)
     },
     "AMAZON.CancelIntent": function(intent, session, response) {
-        var speechOutput = "There's nothing for me to undo. To get started with Twitter, ask for a timeline, "
-            + "make a tweet, or say 'help' for more detailed instructions."
+        var speechOutput = " "
         var repromptText = ""
         var url = ""
         console.log(session)
@@ -611,9 +610,11 @@ Twitter.prototype.intentHandlers = {
                 speechOutput = "Sorry, my memory isn't so good, I can't undo something that's been undone. You'll"
                     + "have to retry your request from the beginning. Say 'help' for an explanation of what I can do"
                 response.ask(speechOutput, repromptText)
+            } else {
+                response.tell(speechOutput, repromptText)
             }
         } else {
-            response.ask(speechOutput, repromptText)
+            response.tell(speechOutput, repromptText)
         }
     }
 }
@@ -671,7 +672,7 @@ function postNewStatus(intent, session, response) {
     input = replaceHashtags(input, 'hash tag ', '%23')
     var url = 'https://api.twitter.com/1.1/statuses/update.json?status=' + input
     // need to sanitize/format tweet input and append #AlexaTwitter
-    speechOutput += "\"" + input + "for you."
+    speechOutput += "\"" + input + "for you. Is there anything else you want to do on Twitter?"
     speechOutput = replaceHashtags(speechOutput, '%23', '#')
 
     postStatus(url, response, function (data, res) {
@@ -872,14 +873,16 @@ function getUser(name, response, callback) {
 function getPrivacyPolicy(response) {
     getTimeline('https://api.twitter.com/1.1/help/privacy.json', response, function(data) {
         var speechOutput = data.privacy
-        response.tell(speechOutput)
+        var cardTitle = "Official Twitter Privacy Policy"
+        response.tellWithCard(speechOutput, cardTitle, speechOutput)
     })
 }
 
 function getTermsOfService(response) {
     getTimeline('https://api.twitter.com/1.1/help/tos.json', response, function(data) {
         var speechOutput = data.tos
-        response.tell(speechOutput)
+        var cardTitle = "Official Twitter Terms of Service"
+        response.tellWithCard(speechOutput, cardTitle, speechOutput)
     })
 }
 
